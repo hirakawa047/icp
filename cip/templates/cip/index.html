@@ -1,0 +1,15 @@
+<html>
+
+<head>
+    <meta charset='utf-8' />
+</head>
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <table>{{form1.as_table}}</table>
+        <tr><td colspan='2'><input type="submit" value="Submit"></td></tr>
+    </form>
+</body>
+
+</html>
