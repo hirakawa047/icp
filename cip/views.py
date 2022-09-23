@@ -9,4 +9,5 @@ def index(request):
         f = getIDForm(request.POST)
     else:
         f = getIDForm()
+    print(f)
     return render(request,'cip/index.html', {'form1': f})
