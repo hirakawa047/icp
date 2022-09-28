@@ -2,4 +2,4 @@ from django import forms
 
 class getIDForm(forms.Form):
 
-    id = forms.CharField(label='Input', required=False)
+    title = forms.CharField(label='Input', required=False)

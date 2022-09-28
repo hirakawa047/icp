@@ -1,15 +1,29 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-    <meta charset='utf-8' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CIP sample</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-
 <body>
-    <form method="POST">
-        {% csrf_token %}
-        <input type="textbox" value="a" name="title">
-        <input type="submit" id="button" name="button" value="Submit">
-    </form>
-</body>
 
+    <main class="container">
+        {# ここが投稿用フォーム #}
+        <form method="POST">
+            {% csrf_token %}
+            <tr><th><label for="id_name">ID:</label></th><td><input type="text" name="name" required id="id_name" /></td></tr>
+            <input type="submit" value="Submit">
+        </form>
+        
+ 
+        {% for topic in topics %}
+        <div class="border">
+            {{ topic.name }}
+        </div>
+        {% endfor %}
+      
+
+    </main>
+</body>
 </html>

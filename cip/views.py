@@ -1,13 +1,22 @@
-from django.shortcuts import render
-from django.template import loader
-from .forms import getIDForm
-# Create your views here.
+from django.shortcuts import render,redirect
 
+from django.views import View
+from .models import Topic
 
-def index(request):
-    if request.method == 'POST':
-        f = getIDForm(request.POST)
-    else:
-        f = getIDForm()
-    print(request.POST["title"])
-    return render(request,'cip/index.html', {'form1': f})
+class IndexView(View):
+
+    def get(self, request, *args, **kwargs):
+
+        topics  = Topic.objects.all()
+        context = { "topics":topics }
+
+        return render(request,"cip/index.html",context)
+
+    def post(self, request, *args, **kwargs):
+
+        posted  = Topic( name = request.POST["name"] )
+        posted.save()
+
+        return redirect("cip:index")
+
+index   = IndexView.as_view()
