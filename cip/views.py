@@ -14,9 +14,16 @@ class IndexView(View):
 
     def post(self, request, *args, **kwargs):
 
-        posted  = Topic( name = request.POST["name"] )
-        posted.save()
-
-        return redirect("cip:index")
+        #posted  = Topic( name = request.POST["name"] )
+        #posted.save()
+        context = {
+            #'name' : request.POST["name"] 
+            'var_name' : 'taro'
+        }
+        #return redirect("cip:index")
+        return render(request,"cip/index.html",context)
 
 index   = IndexView.as_view()
+
+def ContentsView(request):
+    return render(request, 'cip/contents.html')

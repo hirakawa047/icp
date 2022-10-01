@@ -4,4 +4,5 @@ from . import views
 app_name = "cip"
 urlpatterns = [
     path("", views.index, name="index"),
+    path('contents',views.ContentsView, name = 'contents')
 ]

@@ -17,12 +17,12 @@
         </form>
         
  
-        {% for topic in topics %}
-        <div class="border">
-            {{ topic.name }}
-        </div>
-        {% endfor %}
-      
+        <!--{% for topic in topics %} -->
+        <body>
+            {{ var_name }}
+        </body>
+        <!--{% endfor %} -->
+        <li><a href="{% url 'cip:contents' %}">Sample link</a></li>
 
     </main>
 </body>
