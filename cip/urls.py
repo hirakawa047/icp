@@ -1,8 +1,7 @@
 from django.urls import path
-from . import views
+from .views import ChannelIdView
 
 app_name = "cip"
 urlpatterns = [
-    path("", views.index, name="index"),
-    path('contents',views.ContentsView, name = 'contents')
+    path('', ChannelIdView.as_view(), name='index'),
 ]

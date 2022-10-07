@@ -1,5 +1,5 @@
 from django import forms
 
-class getIDForm(forms.Form):
+class ChannelIdForm(forms.Form):
 
-    title = forms.CharField(label='Input', required=False)
+    url_in = forms.CharField(label='channel_id', required=False)

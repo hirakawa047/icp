@@ -1,29 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CIP sample</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>CIP</title>
 </head>
 <body>
-
-    <main class="container">
-        {# ここが投稿用フォーム #}
-        <form method="POST">
-            {% csrf_token %}
-            <tr><th><label for="id_name">ID:</label></th><td><input type="text" name="name" required id="id_name" /></td></tr>
-            <input type="submit" value="Submit">
-        </form>
-        
- 
-        <!--{% for topic in topics %} -->
-        <body>
-            {{ var_name }}
-        </body>
-        <!--{% endfor %} -->
-        <li><a href="{% url 'cip:contents' %}">Sample link</a></li>
-
-    </main>
+    <h1>CIP</h1>
+    <form action="/form method="post">
+    {% csrf_token %}
+    <label for="channel_id"></label>
+    <input id="channel_id" type="text" name="channel_id">
+    {{form}}
+    <input type="submit" value="submit">
+    </form>
 </body>
+
 </html>

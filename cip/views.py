@@ -1,29 +1,48 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
+from django.views.generic import TemplateView
+from .forms import ChannelIdForm
 
-from django.views import View
-from .models import Topic
 
-class IndexView(View):
 
-    def get(self, request, *args, **kwargs):
 
-        topics  = Topic.objects.all()
-        context = { "topics":topics }
 
-        return render(request,"cip/index.html",context)
+#class IndexView(View):
 
-    def post(self, request, *args, **kwargs):
 
-        #posted  = Topic( name = request.POST["name"] )
-        #posted.save()
-        context = {
-            #'name' : request.POST["name"] 
-            'var_name' : 'taro'
+
+def index(request):
+    params = {
+            'url_in':'empty'
         }
-        #return redirect("cip:index")
-        return render(request,"cip/index.html",context)
+    #return render(request,'cip/index.html',params)
 
-index   = IndexView.as_view()
+#index   = IndexView.as_view()
+    if (request.method =='POST'):
+        params = {
+        'url_in' : request.POST['url_in']
+        }
+    return render(request, 'cip/index/html',params)
+
+def form(request):
+    msg = request.POST['url_in']
+    params = {'url_in':msg}
+    return render(request, 'cip/index.html',params)
 
 def ContentsView(request):
     return render(request, 'cip/contents.html')
+
+
+class ChannelIdView(TemplateView):
+
+    def __init__(self):
+        self.cahnnel_id = {
+            'channel_id' : ChannelIdForm()
+        }
+    
+    def get(self,request):
+        return render(request, 'cip/index.html',self.channel_id)
+    
+    def post(self,request):
+        self.channel_id['idForm'] = ChannelIdForm(request.POST)
+        return render(request, 'cip/index.html',self.channel_id)
