@@ -36,7 +36,7 @@ def ContentsView(request):
 class ChannelIdView(TemplateView):
 
     def __init__(self):
-        self.cahnnel_id = {
+        self.channel_id = {
             'channel_id' : ChannelIdForm()
         }
     
