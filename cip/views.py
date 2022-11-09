@@ -2,9 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .forms import ChannelIdForm
-
-
-
+from django.conf import settings
+from django.http import JsonResponse
 
 
 #class IndexView(View):
@@ -22,15 +21,29 @@ def index(request):
         params = {
         'url_in' : request.POST['url_in']
         }
-    return render(request, 'cip/index/html',params)
+    print("OK")
+
+        
+
+    return render(request, 'cip/index.html',params)
 
 def form(request):
     msg = request.POST['url_in']
     params = {'url_in':msg}
+
+    print("OK")
     return render(request, 'cip/index.html',params)
 
+
 def ContentsView(request):
-    return render(request, 'cip/contents.html')
+    params = {
+        'url_in' : 'Default value',
+        'form' : ChannelIdForm(),
+        }
+    if (request.method=='POST'):
+        params['url_in'] = request.POST.get('url_in')
+    print(params)
+    return render(request, 'cip/index.html', params)
 
 
 class ChannelIdView(TemplateView):
@@ -46,3 +59,14 @@ class ChannelIdView(TemplateView):
     def post(self,request):
         self.channel_id['idForm'] = ChannelIdForm(request.POST)
         return render(request, 'cip/index.html',self.channel_id)
+
+def ajax_number(request):
+    number1 = int(request.POST.get('number1'))
+    number2 = int(request.POST.get('number2'))
+    plus = number1 + number2
+    minus = number1 - number2
+    d = {
+        'plus': plus,
+        'minus': minus,
+    }
+    return JsonResponse(d)
